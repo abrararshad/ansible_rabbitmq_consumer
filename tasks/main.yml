@@ -1,0 +1,27 @@
+---
+- name: Install dependencies
+  package: 
+    name: "{{ item }} "
+    state: present
+  with_items:
+    - git-all
+    - python3
+    - python3-devel
+
+- import_tasks: 'user.yml'
+
+- name: Set permissions
+  ansible.builtin.command: "{{ item }}"
+  with_items:
+    - chown -R {{ rmq_user }}:{{ rmq_user_group }} .
+  args:
+    chdir: "{{ rmq_consumer_dir }}"
+
+- name: Git checkout
+  become_user: "{{ rmq_user }}"
+  ansible.builtin.git:
+    repo: 'https://github.com/abrararshad/rmq-consumer.git'
+    dest: "{{ rmq_consumer_dir }}/consumer"
+    version: master
+
+- import_tasks: 'configure.yml'

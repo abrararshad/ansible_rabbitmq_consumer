@@ -1,0 +1,25 @@
+galaxy_info:
+  author: Abrar Arshad
+  description: A RabbitMQ consumer and pass the queues onto an external service for execution
+  license: "license (BSD, MIT)"
+  min_ansible_version: 2.1
+  platforms:
+    - name: EL
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+  galaxy_tags:
+    - rabbitmq
+    - consumer
+    - web
+    - system
+    - supervisor
+    - process
+    - queue
+
+dependencies: []

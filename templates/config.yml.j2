@@ -1,0 +1,31 @@
+APP:
+    ENV: "{{ rmq_config_app_env }}"
+    APP_LOG_DIR: {{ rmq_config_app_log_dir }}
+    APP_LOG_NAME: {{ rmq_config_app_log_file }}
+    SSL_CONTEXT: False
+
+CONSUMER:
+    CWD: "{{ rmq_consumer_dir }}/consumer"
+    COMMAND: "{{ rmq_config_app_command }}"
+
+RMQ:
+    SERVER: "{{ rmq_config_server }}"
+    USER: "{{ rmq_config_user }}"
+    PASS: "{{ rmq_config_pass }}"
+    PORT: {{ rmq_config_port }}
+    EXCHANGE:
+        NAME: "{{ rmq_config_exchange_name }}"
+        TYPE: "{{ rmq_config_exchange_type }}"
+    QUEUE: "{{ rmq_config_queue }}"
+    AUTO_DELETE: {{ rmq_config_queue_auto_delete }}
+    TIMEOUT: 300
+    HEARTBEAT: 0
+    JOBS_LIMIT: "{{ rmq_config_jobs_limit }}"
+    {% if rmq_config_routing_keys|length > 1 -%}
+    ROUTING_KEYS:
+    {%- for rk in rmq_config_routing_keys %}   
+        - {{ rk }} 
+    {% endfor %}
+    {% else -%}
+    ROUTING_KEYS: []
+    {% endif %}
