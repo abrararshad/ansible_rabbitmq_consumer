@@ -11,7 +11,7 @@ Role Variables
 
 ```
 rmq_config_app_env: ''
-rmq_config_app_command: ''
+rmq_config_app_run_command: ''
 rmq_config_server: ''
 rmq_config_user: ""
 rmq_config_pass: ""
@@ -20,7 +20,7 @@ rmq_config_queue: ''
 ```
 Command to run which will receive rabbitmq queue
 ```
-rmq_config_app_command: 'drush do-something'
+rmq_config_app_run_command: 'drush do-something'
 ```
 
 All variables in [main.yml](defaults/main.yml)
@@ -37,7 +37,7 @@ Example
     - name: rabbitmq_consumer
       vars:
         rmq_config_app_env: "dev"
-        rmq_config_app_command: 'drush do-something'
+        rmq_config_app_run_command: 'drush do-something'
         rmq_config_server: '{{ hostvars["rabbitmq"]["ansible_all_ipv4_addresses"] | first }}'
         rmq_config_user: "{{ app_rabbitmq_user_name }}"
         rmq_config_pass: "{{ app_rabbitmq_user_pass }}"

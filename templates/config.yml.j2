@@ -5,8 +5,8 @@ APP:
     SSL_CONTEXT: False
 
 CONSUMER:
-    CWD: "{{ rmq_consumer_dir }}/consumer"
-    COMMAND: "{{ rmq_config_app_command }}"
+    CWD: "{{ rmq_config_app_run_directory }}"
+    COMMAND: "{{ rmq_config_app_run_command }}"
 
 RMQ:
     SERVER: "{{ rmq_config_server }}"
@@ -18,8 +18,8 @@ RMQ:
         TYPE: "{{ rmq_config_exchange_type }}"
     QUEUE: "{{ rmq_config_queue }}"
     AUTO_DELETE: {{ rmq_config_queue_auto_delete }}
-    TIMEOUT: 300
-    HEARTBEAT: 0
+    TIMEOUT: {{ rmq_config_timeout }}
+    HEARTBEAT: {{ rmq_config_heartbeat }}
     JOBS_LIMIT: "{{ rmq_config_jobs_limit }}"
     {% if rmq_config_routing_keys|length > 1 -%}
     ROUTING_KEYS:

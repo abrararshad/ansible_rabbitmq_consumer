@@ -13,7 +13,7 @@
 - name: Set permissions
   ansible.builtin.command: "{{ item }}"
   with_items:
-    - chown -R {{ rmq_user }}:{{ rmq_user_group }} .
+    - chown -R {{ rmq_user }}:{{ rmq_group }} .
   args:
     chdir: "{{ rmq_consumer_dir }}"
 

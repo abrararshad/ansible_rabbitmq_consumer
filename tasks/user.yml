@@ -7,14 +7,14 @@
     database: passwd  
 - name: Create group
   group:
-    name: "{{ rmq_user_group }}"
+    name: "{{ rmq_group }}"
     gid: 1902
   when:
-    - "rmq_user_group|string not in ansible_facts.getent_group"
+    - "rmq_group|string not in ansible_facts.getent_group"
 - name: Create user
   ansible.builtin.user:
     name: "{{ rmq_user }}"
     uid: 1041
-    group: "{{ rmq_user_group }}"
+    group: "{{ rmq_group }}"
     home: "{{ rmq_consumer_dir }}"
     create_home: yes

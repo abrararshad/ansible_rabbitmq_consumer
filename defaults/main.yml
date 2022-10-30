@@ -1,12 +1,13 @@
 ---
 rmq_consumer_dir: '/home/rmq'
 rmq_user: 'rmq'
-rmq_user_group: 'rmq'
+rmq_group: 'rmq'
 
 # env name should be alphabetics, lower-case and no spaces
 # which will be used to run the application as "python app.py {{ rmq_config_app_env }}"
 rmq_config_app_env: 'local'
-rmq_config_app_command: ''
+rmq_config_app_run_directory: ''
+rmq_config_app_run_command: ''
 rmq_config_app_log_dir: False
 rmq_config_app_log_file: 'output.logs'
 
@@ -19,5 +20,7 @@ rmq_config_exchange_name: ''
 rmq_config_exchange_type: 'direct'
 rmq_config_queue: ''
 rmq_config_queue_auto_delete: False
+rmq_config_timeout: 300
+rmq_config_heartbeat: 0
 rmq_config_jobs_limit: 6
 rmq_config_routing_keys: []

@@ -9,7 +9,7 @@
     creates: "{{ rmq_consumer_dir }}/venv"
 
 - name: Permissions
-  ansible.builtin.command: "chown -R {{ rmq_user }}:{{ rmq_user_group }} {{ rmq_consumer_dir }}/venv"
+  ansible.builtin.command: "chown -R {{ rmq_user }}:{{ rmq_group }} {{ rmq_consumer_dir }}/venv"
 
 - name: Activation and installation
   ansible.builtin.shell:
@@ -23,5 +23,5 @@
     src: "{{ rmq_config_file }}"
     dest: "{{ rmq_consumer_dir }}/consumer/configuration/envs/{{ rmq_config_app_env }}_config.yml"
     owner: "{{ rmq_user }}"
-    group: "{{ rmq_user_group }}"
+    group: "{{ rmq_group }}"
     mode: '0644'
