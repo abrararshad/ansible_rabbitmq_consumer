@@ -11,7 +11,19 @@ rmq_config_app_run_command: ''
 rmq_config_app_log_dir: False
 rmq_config_app_log_file: 'output.logs'
 
+rmq_config_retry: 3
+rmq_config_retry_delay: 5
+rmq_config_retry_backoff_factor: 2
+
+rmq_notif_subject: 'consumer stopped'
+rmq_notif_log_lines: 100
+rmq_notif_sendgrid_key: ''
+rmq_notif_sendgrid_from: ''
+rmq_notif_sendgrid_to: ''
+rmq_notif_discord_url: ''
+
 rmq_config_file: 'config.yml.j2'
+rmq_config_errors_threshold_lmit: 5
 rmq_config_server: ''
 rmq_config_user: ''
 rmq_config_pass: ''

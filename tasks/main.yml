@@ -1,12 +1,24 @@
 ---
-- name: Install dependencies
-  package: 
-    name: "{{ item }} "
+- name: Install dependencies on Debian
+  package:
+    name: "{{ item }}"
     state: present
   with_items:
-    - git-all
     - python3
+    - python3-pip    
+    - python3-dev
+  when: ansible_distribution == 'Debian'
+
+- name: Install dependencies on Red Hat
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - python3
+    - python3-pip    
     - python3-devel
+    - python2-dnf
+  when: ansible_distribution == 'RedHat' or ansible_distribution == 'CentOS'
 
 - import_tasks: 'user.yml'
 

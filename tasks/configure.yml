@@ -1,22 +1,23 @@
 ---
 - name: Install virtualenv
-  ansible.builtin.command: pip3 install virtualenv
-
+  ansible.builtin.shell: pip3 install virtualenv
+  
 - name: Creating environment
-  become: true
-  ansible.builtin.command: virtualenv -p python3 "{{ rmq_consumer_dir }}/venv"
+  become_user: "{{ rmq_user }}"
+  ansible.builtin.shell: "python3 -m venv {{ rmq_consumer_dir }}/venv"
   args:
     creates: "{{ rmq_consumer_dir }}/venv"
+    executable: /bin/bash
 
 - name: Permissions
-  ansible.builtin.command: "chown -R {{ rmq_user }}:{{ rmq_group }} {{ rmq_consumer_dir }}/venv"
+  ansible.builtin.shell: "chown -R {{ rmq_user }}:{{ rmq_group }} {{ rmq_consumer_dir }}/venv"
 
 - name: Activation and installation
   ansible.builtin.shell:
       cmd: "{{ item }}"
       chdir: "{{ rmq_consumer_dir }}/consumer"
   with_items:
-    - "source ../venv/bin/activate && pip install -e . && pip install -r requirements.txt"
+    - ". ../venv/bin/activate && pip install -e . && pip install -r requirements.txt"
 
 - name: Creating configuration
   template:

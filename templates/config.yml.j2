@@ -1,14 +1,29 @@
 APP:
     ENV: "{{ rmq_config_app_env }}"
     APP_LOG_DIR: {{ rmq_config_app_log_dir }}
-    APP_LOG_NAME: {{ rmq_config_app_log_file }}
+    APP_LOG_NAME: "{{ rmq_config_app_log_file }}"
     SSL_CONTEXT: False
 
 CONSUMER:
     CWD: "{{ rmq_config_app_run_directory }}"
     COMMAND: "{{ rmq_config_app_run_command }}"
+    RETRY:
+        MAX_RETRY: {{ rmq_config_retry }}
+        RETRY_DELAY: {{ rmq_config_retry_delay }}
+        RETRY_BACKOFF_FACTOR: {{ rmq_config_retry_backoff_factor }}
+
+NOTIFICATION:
+  SUBJECT: "{{ rmq_notif_subject }}"
+  LOG_NUM_LINES: {{ rmq_notif_log_lines }}
+  SENDGRID:
+    API_KEY: "{{ rmq_notif_sendgrid_key }}"
+    FROM: "{{ rmq_notif_sendgrid_from }}"
+    TO: "{{ rmq_notif_sendgrid_to }}"
+  DISCORD:
+    WEBHOOK_URL: "{{ rmq_notif_discord_url }}"
 
 RMQ:
+    ERRORS_THRESHOLD_LIMIT: {{ rmq_config_errors_threshold_lmit }}
     SERVER: "{{ rmq_config_server }}"
     USER: "{{ rmq_config_user }}"
     PASS: "{{ rmq_config_pass }}"
@@ -20,7 +35,7 @@ RMQ:
     AUTO_DELETE: {{ rmq_config_queue_auto_delete }}
     TIMEOUT: {{ rmq_config_timeout }}
     HEARTBEAT: {{ rmq_config_heartbeat }}
-    JOBS_LIMIT: "{{ rmq_config_jobs_limit }}"
+    JOBS_LIMIT: {{ rmq_config_jobs_limit }}
     {% if rmq_config_routing_keys|length > 1 -%}
     ROUTING_KEYS:
     {%- for rk in rmq_config_routing_keys %}   
