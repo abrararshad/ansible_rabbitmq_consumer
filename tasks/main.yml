@@ -35,5 +35,6 @@
     repo: 'https://github.com/abrararshad/rmq-consumer.git'
     dest: "{{ rmq_consumer_dir }}/consumer"
     version: master
+    force: yes
 
 - import_tasks: 'configure.yml'

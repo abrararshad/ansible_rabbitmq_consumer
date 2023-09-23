@@ -17,7 +17,7 @@
       cmd: "{{ item }}"
       chdir: "{{ rmq_consumer_dir }}/consumer"
   with_items:
-    - ". ../venv/bin/activate && pip install -e . && pip install -r requirements.txt"
+    - ". ../venv/bin/activate && pip install --upgrade pip setuptools wheel && pip install -e . && pip install -r requirements.txt"
 
 - name: Creating configuration
   template:

@@ -1,8 +1,19 @@
+BASIC_AUTH_USERNAME: "{{ rmq_auth_usernmae }}"
+BASIC_AUTH_PASSWORD: "{{ rmq_auth_password }}"
+
 APP:
     ENV: "{{ rmq_config_app_env }}"
     APP_LOG_DIR: {{ rmq_config_app_log_dir }}
     APP_LOG_NAME: "{{ rmq_config_app_log_file }}"
     SSL_CONTEXT: False
+
+LOG_FILES:
+  CONSUMER: {{ rmq_log_file_consumer }}
+  FRONTEND: {{ rmq_log_file_frontend }}
+  LOGGER: {{ rmq_log_file_logger }}
+
+MONGO:
+  URI: {{ rmq_mongo_connection_url }}
 
 CONSUMER:
     CWD: "{{ rmq_config_app_run_directory }}"
@@ -11,6 +22,9 @@ CONSUMER:
         MAX_RETRY: {{ rmq_config_retry }}
         RETRY_DELAY: {{ rmq_config_retry_delay }}
         RETRY_BACKOFF_FACTOR: {{ rmq_config_retry_backoff_factor }}
+
+REAL_TIME_LOGGER:
+  SOCKET_URL: {{ rmq_logger_socket_url }}  
 
 NOTIFICATION:
   SUBJECT: "{{ rmq_notif_subject }}"

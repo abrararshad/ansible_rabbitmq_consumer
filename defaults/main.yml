@@ -3,6 +3,15 @@ rmq_consumer_dir: '/home/rmq'
 rmq_user: 'rmq'
 rmq_group: 'rmq'
 
+rmq_auth_usernmae: "admin"
+rmq_auth_password: "rmq_123"
+
+rmq_mongo_connection_url: "mongodb://localhost:27017/pp-jobs?authSource=admin"
+
+rmq_log_file_consumer: 'consumer.log'
+rmq_log_file_frontend: 'frontend.log'
+rmq_log_file_logger: 'logger.log'
+
 # env name should be alphabetics, lower-case and no spaces
 # which will be used to run the application as "python app.py {{ rmq_config_app_env }}"
 rmq_config_app_env: 'local'
@@ -14,6 +23,8 @@ rmq_config_app_log_file: 'output.logs'
 rmq_config_retry: 3
 rmq_config_retry_delay: 5
 rmq_config_retry_backoff_factor: 2
+
+rmq_logger_socket_url: 'http://localhost:8001/logger'
 
 rmq_notif_subject: 'consumer stopped'
 rmq_notif_log_lines: 100
