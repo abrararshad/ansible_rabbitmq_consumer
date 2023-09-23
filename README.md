@@ -2,6 +2,15 @@ Ansible Role
 =========
 
 Ansible role for [RabbitMQ consumer](https://github.com/abrararshad/rmq-consumer)
+
+RMQ Consumer Application
+-------------
+The current application offers essential and robust features like queue/job tracking and rerunning and eveloped in Python. These features are incredibly helpful for troubleshooting any challenges that may arise in your project. While the application is still in development, I believe it's already reliable for production use. You can access it at [RabbitMQ consumer](https://github.com/abrararshad/rmq-consumer#rmq-consumer)
+
+
+Using Ansible
+------------------------------------
+
 ```
 ansible-galaxy install abrararshad.rabbitmq_consumer
 ```
@@ -49,10 +58,6 @@ Example
         rmq_config_queue_auto_delete: False
         rmq_config_jobs_limit: 6
 ```
-
-RMQ Consumer Application
--------------
-The current application offers essential and robust features like queue/job tracking and rerunning. These features are incredibly helpful for troubleshooting any challenges that may arise in your project. While the application is still in development, I believe it's already reliable for production use. You can access it at [RMQ Consumer](https://github.com/abrararshad/rmq-consumer#rmq-consumer)
 
 License
 -------
